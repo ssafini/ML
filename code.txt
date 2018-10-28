@@ -1,0 +1,213 @@
+/*  ______________________________________________________  */
+
+
+data multi.don;
+  set multi.data;
+  drop var1;
+run;
+
+data multi.score;
+    set multi.don;
+	AmtLastYear=AmtThisYear;
+	GaveLastYear=GaveThisYear;
+	drop AmtThisYear GaveThisYear;
+run;
+
+data temp;
+set multi.don;
+ rename Woman=x1 Age=x2 Salary=x3 education=x4 City=x5 SeniorList=x6 NbActivities=x7 Referrals=x8 
+Recency=x9 Frequency=x10 Seniority=x11 TotalGift=x12 MinGift=x13 MaxGift=x14 Contact=x15 GaveLastYear=x16 
+AmtLastYear=x17 GaveThisYear=y AmtThisYear=yAmt ;
+run;
+/* 
+data temp;
+set temp;
+if x9=. then x9=0;
+if x10=. then x10=0;
+if x11=. then x11=12;
+if x12=. then x12=0;
+if x13=. then x13=0;
+if x14=. then x14=0;
+run;
+
+ */
+
+data temp;
+set temp;
+
+if x4 = "Elementary" then x41=1; else x41=0;
+if x4 = "High School" then x42=1; else x42=0;
+
+if x5="Rural" then x51=1; else x51=0;
+if x5="Suburbun" then x52=1; else x52=0;
+if x5="City" then x53=1; else x53=0;
+
+run; 
+
+data temp;
+set temp;
+cx2=x2**2;
+cx3=x3**2;
+cx6=x6**2;
+cx7=x7**2;
+cx8=x8**2;
+cx9=x9**2;
+cx10=x10**2;
+cx11=x11**2;
+cx12=x12**2;
+cx13=x13**2;
+cx14=x14**2;
+cx17=x17**2;
+
+run;
+/*
+data temp;
+set temp;
+
+i_x51_x6 = x51*x6;
+i_x6_x7 = x6*x7;
+i_x6_x8 = x6*x8;
+i_x7_x8 = x7*x8;
+i_x7_x9 = x7*x9;
+i_x8_x9 = x8*x9;
+i_x6_x10 = x6*x10;
+i_x41_x15 = x41*x15; 
+i_x42_x15 = x42*x15;
+i_x51_x15 = x51*x15;
+i_x53_x15 = x53*x15;
+i_x6_x15 = x6*x15;
+i_x7_x15 = x7*x15;
+i_x9_x15 = x9*x15;
+i_x6_x16 = x6*x16 ;
+i_x7_x16 = x7*x16;
+i_x8_x16 = x8*x16;
+
+i_x6_x7 = x6*x7; 
+i_x51_x8 = x51*x8;
+i_x7_x8 = x7*x8; 
+i_x6_x9 = x6*x9; 
+i_x8_x9 = x8*x9; 
+i_x6_x10 =x6*x10; 
+i_x6_x11 = x6*x11; 
+i_x7_x11 = x7*x11;
+i_x8_x11 = x8*x11; 
+i_x10_x11 = x10*x11; 
+i_x41_x15 = x41*x15;
+i_x42_x15 = x42*x15;
+i_x51_x15 = x51*x15; 
+i_x53_x15 = x53*x15; 
+i_x6_x15 = x6*x15;
+i_x10_x15 = x10*x15;
+i_x6_x16 = x6*x16;
+i_x8_x16 = x8*x16;
+
+run; 
+
+*/
+
+
+/* Préparation des données score   */
+
+data score;
+set multi.score;
+ rename Woman=x1 Age=x2 Salary=x3 education=x4 City=x5 SeniorList=x6 NbActivities=x7 Referrals=x8 
+Recency=x9 Frequency=x10 Seniority=x11 TotalGift=x12 MinGift=x13 MaxGift=x14 Contact=x15 GaveLastYear=x16 
+AmtLastYear=x17 ;
+run;
+/* 
+data score;
+set score;
+if x9=. then x9=0;
+if x10=. then x10=0;
+if x11=. then x11=12;
+if x12=. then x12=0;
+if x13=. then x13=0;
+if x14=. then x14=0;
+run;
+
+ */
+data score;
+set score;
+y=0;
+yAmt=0;
+run;
+
+data score;
+set score;
+if x4 = "Elementary" then x41=1; else x41=0;
+if x4 = "High School" then x42=1; else x42=0;
+
+if x5="Rural" then x51=1; else x51=0;
+if x5="Suburbun" then x52=1; else x52=0;
+if x5="City" then x53=1; else x53=0;
+
+run; 
+
+
+data score;
+set score;
+cx2=x2**2;
+cx3=x3**2;
+cx6=x6**2;
+cx7=x7**2;
+cx8=x8**2;
+cx9=x9**2;
+cx10=x10**2;
+cx11=x11**2;
+cx12=x12**2;
+cx13=x13**2;
+cx14=x14**2;
+cx17=x17**2;
+
+run;
+/* 
+
+data score;
+set score;
+i_x51_x6 = x51*x6;
+i_x6_x7 = x6*x7;
+i_x6_x8 = x6*x8;
+i_x7_x8 = x7*x8;
+i_x7_x9 = x7*x9;
+i_x8_x9 = x8*x9;
+i_x6_x10 = x6*x10;
+i_x41_x15 = x41*x15; 
+i_x42_x15 = x42*x15;
+i_x51_x15 = x51*x15;
+i_x53_x15 = x53*x15;
+i_x6_x15 = x6*x15;
+i_x7_x15 = x7*x15;
+i_x9_x15 = x9*x15;
+i_x6_x16 = x6*x16 ;
+i_x7_x16 = x7*x16;
+i_x8_x16 = x8*x16;
+
+i_x6_x7 = x6*x7; 
+i_x51_x8 = x51*x8;
+i_x7_x8 = x7*x8; 
+i_x6_x9 = x6*x9; 
+i_x8_x9 = x8*x9; 
+i_x6_x10 =x6*x10; 
+i_x6_x11 = x6*x11; 
+i_x7_x11 = x7*x11;
+i_x8_x11 = x8*x11; 
+i_x10_x11 = x10*x11; 
+i_x41_x15 = x41*x15;
+i_x42_x15 = x42*x15;
+i_x51_x15 = x51*x15; 
+i_x53_x15 = x53*x15; 
+i_x6_x15 = x6*x15;
+i_x10_x15 = x10*x15;
+i_x6_x16 = x6*x16;
+i_x8_x16 = x8*x16;
+
+run;
+ */
+
+/* Sampling from score   
+
+proc surveyselect data=temp
+   method=srs n=900000 out=temp;
+run;
+
+*/
